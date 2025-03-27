@@ -16,7 +16,7 @@ FILENAME="$3"
 
 if [ "$OPTION" = "-e" ] ; then
     FILENAME=$2
-    CONFPATH="~/afs/.conf/config/"
+    CONFPATH="~/afs/.conf/config"
 fi
 
 FILE="$CONFPATH/$FILENAME.conf"
