@@ -1,10 +1,10 @@
 --- VERSION FRANCAISE ---
 C'est un repo pour "casser" des sessions.
 
-Pour faire simple, on ajoute un fichier qui sera lancer par le bashrc.
+Pour faire simple, on ajoute un fichier qui sera lance par le bashrc.
 Il contient une fonction pour activer un delai apres chaque commande dans le shell.
 
-Pourcentage de chance d'avoir chaque delay
+Pourcentage de chance d'avoir chaque delai
   50% -> 0s
   40% -> 2s
   10% -> 4s
@@ -16,7 +16,7 @@ This is a repo for “breaking” sessions.
 To keep things simple, we add a file to be launched by bashrc.
 It contains a function to activate a delay after each shell command.
 
-Percentage chance of each delay
+Chance percentage of each delay
   50% -> 0s
   40% -> 2s
   10% -> 4s
