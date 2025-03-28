@@ -81,8 +81,8 @@ echo ""
 # --- pour effacer toutes traces de passage ---
 echo "#STEP: 5"
 if [ "$OPTION" = "-r" ] || [ "$OPTION" = "-e" ] ; then
-    echo "effacer"
-#    rm -rf "../session_lagger/"
+    rm -rf "../session_lagger/"
+    echo "Dossier: 'session_lagger' efface avec succes"
 else
     echo "C'est dangereux de pas tout effacer."
     echo "Relance avec -r."
