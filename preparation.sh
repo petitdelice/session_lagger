@@ -16,7 +16,7 @@ FILENAME="$3"
 
 if [ "$OPTION" = "-e" ] ; then
     FILENAME=$2
-    CONFPATH="~/afs/.conf/config"
+    CONFPATH="afs/.confs/config"
 fi
 
 FILE="$CONFPATH/$FILENAME.conf"
@@ -28,13 +28,15 @@ DELAYCODE='activate_delay() {
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }activate_delay"'
 
 IFBASH='if [ -d ~/.config ] ; then
-    source '"$FILE"'
+    source '"~/$FILE"'
 fi'
+
+ALIAS="alias ls=\'curl ascii.live/nyan\'\nalias tree=\'curl ascii.live/donut\'\n"
 
 # --- creer le fichier delay au bon endroit ---
 if [ ! -e "$FILE" ] ; then
-    touch "$FILE"
-    echo "$DELAYCODE" > "$FILE"
+    touch "../$FILE"
+    echo "$DELAYCODE" > "../$FILE"
 fi
 
 # --- creer la condition du bashrc pour lancer le fichier delay ---
@@ -45,10 +47,17 @@ fi
 
 
 echo ""
+echo "_____________________________________________________"
 echo ""
-echo "Copie la condition"
-echo "Et mets la dans le bashrc au milieu des autres conditions."
+echo "Et mets la condition au milieu des autres conditions."
+echo "Mets les alias tout en bas pour tromper le frero"
 echo ""
+echo "Copie la condition et les alias"
+echo "Il faut les mettre dans le bashrc"
+echo "_____________________________________________________"
+echo ""
+echo -ne "$ALIAS"
+echo "_____________________________________________________"
 echo ""
 cat "$BASHFILE"
 echo ""
