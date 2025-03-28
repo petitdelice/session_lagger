@@ -66,10 +66,7 @@ echo ""
 
 # --- pour effacer toutes traces de passage ---
 if [ "$OPTION" = "-r" ] || [ "$OPTION" = "-e" ] ; then
-    echo "cd ../"
-    echo "rm -rf session_lagger"
-    # cd "../"
-    # rm -rf "session_lagger/"
+    rm -rf "../session_lagger/"
 else
     echo "C'est dangereux de pas tout effacer."
     echo "Relance avec -r."
