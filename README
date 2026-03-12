@@ -21,4 +21,4 @@ Chance percentage of each delay
   40% -> 2s
   10% -> 4s
 
-./preparation -r -e
+./preparation -r -e forge_afs.conf
